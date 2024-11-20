@@ -1,0 +1,54 @@
+
+// Default mixins and settings -----------------
+@use "sass:color";
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=Hanken%20Grotesk);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+
+
+/**
+ * Solarized colors by Ethan Schoonover
+ */
+
+$backgroundColor: #000000   ;
+$mainFont: 'Lato', Impact, sans-serif;
+// $mainFontSize: "";
+$mainColor: #fff;
+// $blockMargin: "";
+// $headingMargin: "";
+$headingFont: 'Hanken Grotesk', Impact, sans-serif;
+$headingColor: #0FF2B2;
+// $headingLineHeight: "";
+$headingLetterSpacing: -0.03em;
+$headingTextTransform: none;
+// $headingTextShadow: "";
+// $headingFontWeight: "";
+$headingTextShadow: none;
+// $heading1Size: "";
+// $heading2Size: "";
+$heading3Size: 1.00em;
+// $heading4Size: "";
+// $codeFont: "";
+$linkColor: #0FF2B2;
+$linkColorHover: color.adjust($linkColor, $lightness: 20%) ;
+
+
+// Change text colors against light slide backgrounds
+@include light-bg-text-color(#222);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+
+// Override theme style (see ../template/theme.scss)
+
+.reveal h3{
+    color: $mainColor;
+}

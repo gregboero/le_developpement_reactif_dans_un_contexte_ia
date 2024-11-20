@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Développement réactive dans un contexte IA </title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/mia.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+
+	<body>
+		<img id="myLogo" src="assets/mia-removebg-preview.png" style="position: absolute;
+						bottom: 10px;
+                        width: 100px;
+                        height: 100px;"/>
+		<div class="reveal">
+			<div class="slides">
+				<!--TITLE SLIDE-->
+				<section data-transition="zoom">
+					<h2>Développement réactif dans un contexte IA</h2>
+					<h3>Pourquoi ?</h3>
+					<img width="400" height="100" src="assets/MIA-logo.png" alt="Mia logo">
+				</section>
+
+				<section data-transition="zoom">
+					<h3>Grégory Boero-Teyssier</h3>
+					<h4>#SolutionArchitect #TechLead #Reactive #CleanCode #Kotlin #Java ...</h4>
+					<img width="200" height="200" src="assets/1632842210692.jpg" alt="Grégory Boero-Teyssier photo"
+						 style="border-radius: 50%;">
+				</section>
+
+				<!--Reactive Programming SLIDE-->
+				<section data-transition="convex">
+					<section>
+						<h2>Programmation réactive</h2>
+						<h3>Qu'est-ce que la programmation réactive ?</h3>
+						<small>
+							“The term, ‘reactive’, refers to programming models that are built around reacting to
+							change — network components reacting to I/O events, UI controllers reacting to mouse events, and
+							others. In that sense, non-blocking is reactive, because, instead of being blocked, we are now in
+							the mode of reacting to notifications as operations complete or data becomes available.”
+						</small>
+						<small style="color: #0FDBF2">
+							https://docs.spring.io/spring-framework/reference/web/webflux/new-framework.html#webflux-why-reactive
+						</small>
+					</section>
+					<section>
+						<h2>Programmation réactive</h2>
+						<h3>Le manifeste Réactif</h3>
+						<small style="color: #0FDBF2">
+							https://www.reactivemanifesto.org
+						</small>
+						<img width="700" height="300" src="assets/reactive.png" alt="Reactive logo">
+						<small>Lecture complémentaire :
+							<span style="color: #0FDBF2">
+							https://www.reactive-streams.org
+						</span>
+						</small>
+					</section>
+					<section>
+						<h2>Programmation réactive</h2>
+						<h3>Nouveaux outils, "nouveaux" concepts</h3>
+						<table>
+							<thead>
+							<tr>
+								<th><small>Notions de flux</small></th>
+								<th><small>Opérateurs sur flux</small></th>
+								<th><small>Diagrammes de marbre</small></th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td>
+									<small>Flux de :</small>
+									<ul>
+										<li><small>1 élément (en Java : Mono&lt;T&gt;)</small></li>
+										<li><small>N éléments (en Java : Flux&lt;T&gt;)</small></li>
+									</ul>
+								</td>
+								<td>
+									<small>Ce sont les mêmes opérateurs que pour les tableaux (map, filter, each, etc.)</small>
+								</td>
+								<td>
+									<img src="assets/MarbleDiagram.png" alt="Diagramme de marbre">
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</section>
+					<section>
+						<h2>Programmation réactive</h2>
+						<h3>La "Back-Pressure"</h3>
+						<small>
+							La "Back-Pressure", ou "contre-pression", est un système permettant d'augmenter la résilience des
+							systèmes pour prévenir les défaillances systémiques.
+						</small>
+						<img width="800" height="300" src="assets/backpressure.png" alt="Back pressure illustration">
+					</section>
+					<section data-transition="convex">
+						<h2>État des lieux actuels</h2>
+						<h3>Bases de données</h3>
+						<table>
+							<thead>
+							<tr>
+								<th>Relationnelle</th>
+								<th>Non relationnelle</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td>
+									<small>R2DBC : Reactive Relational Database Connectivity</small>
+									<small style="color: #0FDBF2">
+										Spécification ouverte : https://github.com/r2dbc/r2dbc-spi
+									</small>
+								</td>
+								<td>
+									<small>Requiert un driver réactif spécifique à votre base de données</small>
+									<small style="color: #0FDBF2">
+										Exemple : https://docs.mongodb.com/drivers/reactive-streams/
+									</small>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</section>
+					<section data-transition="convex">
+						<h2>État des lieux actuels</h2>
+						<h3>Communication entrante/sortante</h3>
+						<ul>
+							<li>WebSocket</li>
+							<li>Server-Sent Events</li>
+							<li>RPC</li>
+							<li>HTTP/2 Stream</li>
+							<li>Aeron</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Des solutions pour aller plus loin</h2>
+						<h3>RSocket / gRPC</h3>
+						<table>
+							<thead>
+							<tr>
+								<th>RSocket</th>
+								<th>gRPC</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td>
+									<small>
+										Protocole de communication créé par Netflix, implémentant le manifeste réactif au
+										niveau du protocole de communication. La communication est effectuée en binaire
+										avec plusieurs modes de transport (TCP/WebSocket/Aeron/HTTP/2 Stream).
+									</small>
+									<small style="color: #0FDBF2">Plus d'infos : https://rsocket.io/</small>
+								</td>
+								<td>
+									<small>
+										Protocole créé par Google, basé sur HTTP/2 et Proto Buff pour effectuer des appels
+										RPC (Remote Procedure Call), permettant d'appeler du code distant comme un objet local.
+									</small>
+									<small style="color: #0FDBF2">Plus d'infos : https://grpc.io/</small>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</section>
+
+					<section>
+						<h2>Pourquoi RSocket</h2>
+						<ul>
+							<li>Message Driven</li>
+							<li>Reactive Manifesto</li>
+							<li>Polyglot Support</li>
+							<li>Transport Layer Flexibility</li>
+							<li>Fonctions de communication :
+								<ul>
+									<li>Fire-and-Forget</li>
+									<li>Request/Response (single-response)</li>
+									<li>Request/Stream (multi-response, finite)</li>
+									<li>Channel</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<!--Use Case in AI SLIDE-->
+				<section data-transition="convex">
+					<section>
+						<h2>Quel est le rapport avec l'IA ?</h2>
+						<h3>Un cas d'usage typique : l'automatisation de la gestion documentaire</h3>
+					</section>
+					<section>
+						<h2>Cas d'usage numéro 1 :</h2>
+						<div>
+							<img style="background-color: white; height: 500px;" src="assets/documentProcessingUseCase.svg"
+								 alt="Document processing use case">
+						</div>
+					</section>
+					<section>
+						<h2>Cas d'usage numéro 2 :</h2>
+						<div>
+							<img style="background-color: white; height: 500px;" src="assets/ragUseCase.svg" alt="RAG use case">
+						</div>
+					</section>
+				</section>
+
+				<!--QUESTION SLIDE-->
+				<section data-transition="zoom">
+					<h2>MERCI</h2>
+					<h3>DES QUESTIONS ?</h3>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
