@@ -1,0 +1,2 @@
+# le_developpement_reactif_dans_un_contexte_ia
+conf du jug sur le_developpement_reactif_dans_un_contexte_ia
